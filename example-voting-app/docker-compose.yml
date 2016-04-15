@@ -2,7 +2,7 @@ version: "2"
 
 services:
   voting-app:
-    build: ./voting-app/.
+    image: swarmdemo/voting-app
     volumes:
      - ./voting-app:/app
     ports:
