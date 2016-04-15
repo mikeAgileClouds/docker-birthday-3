@@ -17,6 +17,8 @@ services:
       - ./result-app:/app
     ports:
       - "5001:80"
+    environment:
+        - "constraint:node==ip-172-31-4-241"
     networks:
       - front-tier
       - back-tier
