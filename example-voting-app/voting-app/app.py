@@ -9,7 +9,7 @@ import random
 import json
 
 option_a = os.getenv('OPTION_A', "Swarm")
-option_b = os.getenv('OPTION_B', "Compose")
+option_b = os.getenv('OPTION_B', "dockerCompose")
 
 hostname = socket.gethostname()
 
