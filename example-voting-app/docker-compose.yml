@@ -91,6 +91,8 @@ services:
 
 volumes:
   db-data:
+  nginx:
+    driver: local
 
 networks:
   front-tier:
