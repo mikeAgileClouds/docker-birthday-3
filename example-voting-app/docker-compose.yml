@@ -1,8 +1,7 @@
 version: "2"
 
 services:
-
-interlock:
+  interlock:
     image: ehazlett/interlock:1.0.1
     command: -D run
     tty: true
@@ -49,7 +48,7 @@ interlock:
     volumes:
      - ./voting-app:/app
     ports:
-      - "5000:80"
+      - "80"
     networks:
       - front-tier
       - back-tier
@@ -63,7 +62,7 @@ interlock:
     volumes:
       - ./result-app:/app
     ports:
-      - "80"
+      - "5000:80"
     environment:
         - "constraint:node==ip-172-31-4-241"
     networks:
