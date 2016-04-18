@@ -10,7 +10,7 @@ services:
     environment: 
         INTERLOCK_CONFIG: |
             ListenAddr = ":8080"
-            DockerURL = "tcp://54.183.181.250:3375"
+            #DockerURL = "tcp://54.183.181.250:3375"
             
             [[Extensions]]
             Name = "nginx"
@@ -50,9 +50,11 @@ services:
     build: ./result-app/.
     ports:
       - "80"
+    labels:
+      - "interlock.hostname=results"
+      - "interlock.domain=git2swarm.com"
     environment:
         - "constraint:node==ip-172-31-4-241"
-  
   worker:
     image: manomarks/worker
    
