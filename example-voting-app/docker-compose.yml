@@ -71,3 +71,4 @@ volumes:
   db-data:
   nginx:
     driver: local
+    
