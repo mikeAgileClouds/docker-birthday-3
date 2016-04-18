@@ -10,7 +10,7 @@ services:
     environment: 
         INTERLOCK_CONFIG: |
             ListenAddr = ":8080"
-            #DockerURL = "tcp://54.183.181.250:3375"
+            DockerURL = "tcp://54.183.181.250:3375"
             
             [[Extensions]]
             Name = "nginx"
