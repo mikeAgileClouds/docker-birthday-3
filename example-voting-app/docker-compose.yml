@@ -52,8 +52,7 @@ services:
       - "80"
     environment:
         - "constraint:node==ip-172-31-4-241"
-   
-
+  
   worker:
     image: manomarks/worker
    
