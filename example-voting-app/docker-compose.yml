@@ -18,9 +18,6 @@ services:
             PidPath = "/etc/conf/nginx.pid"
             MaxConn = 1024
             Port = 80
-    networks:
-        - front-tier
-        - back-tier
     volumes:
         - nginx:/etc/conf
         - /var/tmp/config.toml:/bin/config.toml
@@ -39,19 +36,11 @@ services:
         - interlock:interlock
     volumes:
         - nginx:/etc/conf
-    networks:
-        - front-tier
-        - back-tier
-
+   
   voting-app:
-    image: swarmdemo/voting-app
-    volumes:
-     - ./voting-app:/app
+    build: ./voting-app/. 
     ports:
       - "80"
-    networks:
-      - front-tier
-      - back-tier
     labels:
       - "interlock.hostname=votingApp"
       - "interlock.domain=git2swarm.com"
@@ -59,41 +48,27 @@ services:
 
   result-app:
     build: ./result-app/.
-    volumes:
-      - ./result-app:/app
     ports:
       - "5000:80"
     environment:
         - "constraint:node==ip-172-31-4-241"
-    networks:
-      - front-tier
-      - back-tier
+   
 
   worker:
     image: manomarks/worker
-    networks:
-      - back-tier
-
+   
   redis:
     image: redis:alpine
     container_name: redis
     ports: ["6379"]
-    networks:
-      - back-tier
-
+   
   db:
     image: postgres:9.4
     container_name: db
     volumes:
       - "db-data:/var/lib/postgresql/data"
-    networks:
-      - back-tier
-
+   
 volumes:
   db-data:
   nginx:
     driver: local
-
-networks:
-  front-tier:
-  back-tier:
